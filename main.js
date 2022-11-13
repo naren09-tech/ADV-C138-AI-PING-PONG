@@ -28,7 +28,7 @@ function setup() {
   video = createCapture(VIDEO);
   gameStatus = "";
   video.size(600, 300);
-  poseNet = ml5.poseNet(modelLoaded);
+  poseNet = ml5.poseNet(video,modelLoaded);
   poseNet.on("pose", gotPoses);
   video.hide();
 }
@@ -42,6 +42,7 @@ function gotPoses(results) {
     wristY = results[0].pose.rightWrist.y;
     console.log(wristX + " " + wristY);
     scoreRightWrist = results[0].pose.keypoints[10].score;
+    //console.log(scoreRightWrist);
   }
 }
 function startGame() {
@@ -49,10 +50,10 @@ function startGame() {
   document.getElementById("status").innerHTML = "Game is loaded";
 }
 function draw() {
-  if (gameStatus = "start") {
+  if (gameStatus == "start") {
     if (scoreRightWrist > 0.2) {
-      fill("red");
-      stroke("red");
+      fill("white");
+      stroke("white");
       circle(wristX, wristY, 20);
     }
     background(0);
