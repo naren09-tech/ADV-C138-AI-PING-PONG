@@ -8,3 +8,10 @@ body
 .heading button{
     float:right;
 }
+canvas{
+    border:dashed 2px white;
+}
+.copyright_footer{
+    text-align: center;
+    color:white;
+}
