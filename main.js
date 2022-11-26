@@ -35,6 +35,10 @@ function setup() {
 function modelLoaded() {
   console.log("Model is loaded");
 }
+function preload(){
+  ball_touch=loadSound("ball_touch_paddel.wav");
+  ball_miss=loadSound("missed.wav");
+}
 function gotPoses(results) {
   if (results.length > 0) {
     console.log(results);
@@ -73,7 +77,7 @@ function draw() {
     fill(250, 0, 0);
     stroke(0, 0, 250);
     strokeWeight(0.5);
-    paddle1Y = mouseY;
+    paddle1Y = wristY;
     rect(paddle1X, paddle1Y, paddle1, paddle1Height, 100);
 
 
@@ -162,13 +166,24 @@ function move() {
     stroke("white");
     textSize(25)
     text("Game Over!☹☹", width / 2, height / 2);
-    text("Reload The Page!", width / 2, height / 2 + 30)
+    text("Press restart button to reload the game", width / 2, height / 2 + 30)
     noLoop();
     pcscore = 0;
   }
   if (ball.y + ball.r > height || ball.y - ball.r < 0) {
     ball.dy = - ball.dy;
   }
+  if(ball.y>=paddle1Y && ball.y<=paddle1Y+paddle1Height){
+    ball_touch.play();
+  }
+  else{
+    ball_miss.play();
+  }
+}
+function restart(){
+  pcscore=0;
+  playerscore=0;
+  loop();
 }
 
 
@@ -185,10 +200,10 @@ function models() {
 
 //this function help to not go te paddle out of canvas
 function paddleInCanvas() {
-  if (mouseY + paddle1Height > height) {
-    mouseY = height - paddle1Height;
+  if (paddle1Y + paddle1Height > height) {
+    paddle1Y = height - paddle1Height;
   }
-  if (mouseY < 0) {
-    mouseY = 0;
+  if (paddle1Y < 0) {
+    paddle1Y = 0;
   }
 }
