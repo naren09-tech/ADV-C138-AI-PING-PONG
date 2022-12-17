@@ -1,17 +1,33 @@
-body
-{
-    background-size: cover;
+#start,#status {
+    font-size: 22px;
 }
-.heading{
+.big_image{
     width:100%;
 }
 .heading button{
-    float:right;
+    float: right;
+    border:1px solid white;
 }
-canvas{
-    border:dashed 2px white;
+.heading h3{
+    display:inline;
 }
-.copyright_footer{
-    text-align: center;
-    color:white;
+.heading{
+    width:100%;
+    text-align:left;
+}
+h4{
+    background-color: white;
+    line-height:2px;
+    margin:0px;
+
+}
+.instruction_image{
+    display: inline-block;
+    width:45%;
+}
+video{
+    background:url("game_console.jpg");
+    background-size: cover;
+    background-position:center;
+    padding:25px;
 }
